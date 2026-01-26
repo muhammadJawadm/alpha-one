@@ -3,6 +3,12 @@ import DashboardLayout from './layouts/DashboardLayout';
 import Dashboard from './pages/Dashboard';
 import Profile from './pages/Profile';
 import Settings from './pages/Settings';
+import ProfileSettings from './pages/ProfileSettings';
+import ChangePassword from './pages/ChangePassword';
+import Subscriptions from './pages/Subscriptions';
+import LanguagePreferences from './pages/LanguagePreferences';
+import TermsConditions from './pages/TermsConditions';
+import PrivacyPolicy from './pages/PrivacyPolicy';
 import NotFound from './pages/NotFound';
 import Register from './pages/Register';
 import Subscription from './pages/Subscription';
@@ -31,6 +37,12 @@ export default function App() {
           <Route path="missions" element={<Missions />} />
           <Route path="profile" element={<Profile />} />
           <Route path="settings" element={<Settings />} />
+          <Route path="settings/profile" element={<ProfileSettings />} />
+          <Route path="settings/change-password" element={<ChangePassword />} />
+          <Route path="settings/subscriptions" element={<Subscriptions />} />
+          <Route path="settings/language" element={<LanguagePreferences />} />
+          <Route path="settings/terms" element={<TermsConditions />} />
+          <Route path="settings/privacy" element={<PrivacyPolicy />} />
 
         </Route>
 
