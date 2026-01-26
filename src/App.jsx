@@ -10,6 +10,7 @@ import Payment from './pages/Payment';
 import LoginScreen from './pages/LoginScreen';
 import Employees from './pages/Employees';
 import EmployeeDetails from './pages/EmployeeDetails';
+import Missions from './pages/Missions';
 
 export default function App() {
   return (
@@ -27,6 +28,7 @@ export default function App() {
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="employees" element={<Employees />} />
           <Route path="employees/:employeeId" element={<EmployeeDetails />} />
+          <Route path="missions" element={<Missions />} />
           <Route path="profile" element={<Profile />} />
           <Route path="settings" element={<Settings />} />
 
