@@ -1,0 +1,319 @@
+import { useState } from 'react';
+import CreateMissionModal from '../components/modals/CreateMissionModal';
+import EditMissionModal from '../components/modals/EditMissionModal';
+import DeleteMissionModal from '../components/modals/DeleteMissionModal';
+
+const Missions = () => {
+    const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
+    const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+    const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+    const [selectedMission, setSelectedMission] = useState(null);
+    const [searchQuery, setSearchQuery] = useState('');
+    const [openActionMenu, setOpenActionMenu] = useState(null);
+
+    // Mock mission data
+    const [missions, setMissions] = useState([
+        {
+            id: 1,
+            missionName: 'Construction',
+            location: 'Site A – Downtown Plaza',
+            employee: 'John',
+            h60: 'Acknowledged',
+            h0: 'Check-In',
+            startTime: '09:00 AM',
+            endTime: '02:30 PM',
+            date: '2026-01-09'
+        },
+        {
+            id: 2,
+            missionName: 'Project Management',
+            location: 'Site E – Coastal Harbor',
+            employee: 'Michael',
+            h60: 'Inactive',
+            h0: 'Check-In',
+            startTime: '11:30 AM',
+            endTime: '03:30 PM',
+            date: '2026-01-09'
+        },
+        {
+            id: 3,
+            missionName: 'Safety Standards',
+            location: 'Site G – Green Valley',
+            employee: 'Sarah',
+            h60: 'Acknowledged',
+            h0: 'Missed',
+            startTime: '12:00 PM',
+            endTime: '04:00 PM',
+            date: '2026-01-09'
+        },
+        {
+            id: 4,
+            missionName: 'Sustainability',
+            location: 'Site D – Mountain Ridge',
+            employee: 'Lucas',
+            h60: 'Acknowledged',
+            h0: 'Check-In',
+            startTime: '11:00 AM',
+            endTime: '03:00 PM',
+            date: '2026-01-09'
+        },
+        {
+            id: 5,
+            missionName: 'Urban Planning',
+            location: 'Site F – Urban Heights',
+            employee: 'Emma',
+            h60: 'Acknowledged',
+            h0: 'Check-In',
+            startTime: '12:30 PM',
+            endTime: '05:00 PM',
+            date: '2026-01-09'
+        },
+        {
+            id: 6,
+            missionName: 'Engineering',
+            location: 'Site C – Riverside Park',
+            employee: 'David',
+            h60: 'Acknowledged',
+            h0: 'Missed',
+            startTime: '10:00 AM',
+            endTime: '05:30 PM',
+            date: '2026-01-09'
+        },
+        {
+            id: 7,
+            missionName: 'Building Materials',
+            location: 'Site H – Historic District',
+            employee: 'Olivia',
+            h60: 'Inactive',
+            h0: 'Check-In',
+            startTime: '01:00 PM',
+            endTime: '06:00 PM',
+            date: '2026-01-09'
+        },
+        {
+            id: 8,
+            missionName: 'Architecture',
+            location: 'Site B – City Center',
+            employee: 'Alice',
+            h60: 'Acknowledged',
+            h0: 'Missed',
+            startTime: '09:30 AM',
+            endTime: '04:30 PM',
+            date: '2026-01-09'
+        },
+        {
+            id: 9,
+            missionName: 'Cost Estimation',
+            location: 'Site I – Suburban Square',
+            employee: 'John',
+            h60: 'Acknowledged',
+            h0: 'Missed',
+            startTime: '10:30 AM',
+            endTime: '06:30 PM',
+            date: '2026-01-09'
+        },
+        {
+            id: 10,
+            missionName: 'Construction',
+            location: 'Site A – Downtown Plaza',
+            employee: 'James',
+            h60: 'Acknowledged',
+            h0: 'Check-In',
+            startTime: '09:00 AM',
+            endTime: '02:30 PM',
+            date: '2026-01-09'
+        },
+    ]);
+
+    const getStatusBadge = (status) => {
+        const statusStyles = {
+            'Acknowledged': 'bg-blue-500/20 text-blue-400',
+            'Check-In': 'bg-green-500/20 text-green-400',
+            'Missed': 'bg-red-500/20 text-red-400',
+            'Inactive': 'bg-gray-500/20 text-gray-400'
+        };
+
+        return (
+            <span className={`inline-block px-3 py-1 text-xs font-medium rounded-full ${statusStyles[status]}`}>
+                {status}
+            </span>
+        );
+    };
+
+    const handleEdit = (mission) => {
+        setSelectedMission(mission);
+        setIsEditModalOpen(true);
+        setOpenActionMenu(null);
+    };
+
+    const handleDelete = (mission) => {
+        setSelectedMission(mission);
+        setIsDeleteModalOpen(true);
+        setOpenActionMenu(null);
+    };
+
+    const confirmDelete = () => {
+        if (selectedMission) {
+            setMissions(missions.filter(m => m.id !== selectedMission.id));
+            setSelectedMission(null);
+        }
+    };
+
+    const handleImportFile = () => {
+        console.log('Import file clicked');
+        // Add import file logic here
+    };
+
+    const filteredMissions = missions.filter(mission =>
+        mission.missionName.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        mission.location.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        mission.employee.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+
+    return (
+        <div className="min-h-screen bg-[#0F1729] p-8">
+            {/* Header */}
+            <div className="mb-8">
+                <h1 className="text-3xl font-semibold text-white mb-2">Missions</h1>
+                <p className="text-gray-400 text-sm">Create and manage missions monitoring of employees</p>
+            </div>
+
+            {/* Action Buttons */}
+            <div className="flex gap-3 mb-6">
+                <button
+                    onClick={() => setIsCreateModalOpen(true)}
+                    className="flex items-center gap-2 px-4 py-2.5 bg-[#3B82F6] hover:bg-[#2563EB] text-white text-sm font-medium rounded-lg transition-colors"
+                >
+                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+                    </svg>
+                    Create New Mission
+                </button>
+                <button
+                    onClick={handleImportFile}
+                    className="flex items-center gap-2 px-4 py-2.5 bg-[#3B82F6] hover:bg-[#2563EB] text-white text-sm font-medium rounded-lg transition-colors"
+                >
+                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                    </svg>
+                    Import File
+                </button>
+            </div>
+
+            {/* Search and Date */}
+            <div className="flex items-center justify-between mb-6 gap-4">
+                {/* Search Bar */}
+                <div className="relative flex-1 max-w-md">
+                    <svg
+                        className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                    >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    </svg>
+                    <input
+                        type="text"
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                        placeholder="Search Missions"
+                        className="w-full pl-10 pr-4 py-2.5 bg-[#1A2332] text-white placeholder-gray-500 rounded-lg border border-transparent focus:border-[#3B82F6] focus:outline-none transition-colors"
+                    />
+                </div>
+
+                {/* Date Display */}
+                <div className="flex items-center gap-2 px-4 py-2.5 bg-[#1A2332] rounded-lg border border-[#2B3544]">
+                    <svg className="w-5 h-5 text-[#3B82F6]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    </svg>
+                    <span className="text-white text-sm font-medium">01/15/2026</span>
+                </div>
+            </div>
+
+            {/* Mission Table */}
+            <div className="bg-[#1A2332] rounded-lg overflow-hidden border border-[#2B3544]">
+                <div className="overflow-x-auto">
+                    <table className="w-full">
+                        <thead>
+                            <tr className="border-b border-[#2B3544]">
+                                <th className="px-6 py-4 text-left text-sm font-medium text-white">Mission Name</th>
+                                <th className="px-6 py-4 text-left text-sm font-medium text-white">Location</th>
+                                <th className="px-6 py-4 text-left text-sm font-medium text-white">Employee</th>
+                                <th className="px-6 py-4 text-left text-sm font-medium text-white">H-60</th>
+                                <th className="px-6 py-4 text-left text-sm font-medium text-white">H-0</th>
+                                <th className="px-6 py-4 text-left text-sm font-medium text-white">Start Time</th>
+                                <th className="px-6 py-4 text-left text-sm font-medium text-white">End Time</th>
+                                <th className="px-6 py-4 text-left text-sm font-medium text-white">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {filteredMissions.map((mission) => (
+                                <tr
+                                    key={mission.id}
+                                    className="border-b border-[#2B3544] hover:bg-[#2B3544]/30 transition-colors"
+                                >
+                                    <td className="px-6 py-4 text-sm text-white">{mission.missionName}</td>
+                                    <td className="px-6 py-4 text-sm text-gray-300">{mission.location}</td>
+                                    <td className="px-6 py-4 text-sm text-gray-300">{mission.employee}</td>
+                                    <td className="px-6 py-4">{getStatusBadge(mission.h60)}</td>
+                                    <td className="px-6 py-4">{getStatusBadge(mission.h0)}</td>
+                                    <td className="px-6 py-4 text-sm text-gray-300">{mission.startTime}</td>
+                                    <td className="px-6 py-4 text-sm text-gray-300">{mission.endTime}</td>
+                                    <td className="px-6 py-4 relative">
+                                        <button
+                                            onClick={() => setOpenActionMenu(openActionMenu === mission.id ? null : mission.id)}
+                                            className="p-1 hover:bg-white/10 rounded transition-colors"
+                                        >
+                                            <svg className="w-5 h-5 text-gray-400" fill="currentColor" viewBox="0 0 24 24">
+                                                <circle cx="12" cy="5" r="2" />
+                                                <circle cx="12" cy="12" r="2" />
+                                                <circle cx="12" cy="19" r="2" />
+                                            </svg>
+                                        </button>
+
+                                        {/* Action Dropdown */}
+                                        {openActionMenu === mission.id && (
+                                            <div className="absolute right-0 mt-2 w-32 bg-[#2B3544] rounded-lg shadow-lg border border-gray-600 z-10">
+                                                <button
+                                                    onClick={() => handleEdit(mission)}
+                                                    className="w-full px-4 py-2 text-left text-sm text-white hover:bg-[#3B82F6] transition-colors rounded-t-lg"
+                                                >
+                                                    Edit
+                                                </button>
+                                                <button
+                                                    onClick={() => handleDelete(mission)}
+                                                    className="w-full px-4 py-2 text-left text-sm text-red-400 hover:bg-red-500/20 transition-colors rounded-b-lg"
+                                                >
+                                                    Delete
+                                                </button>
+                                            </div>
+                                        )}
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            {/* Modals */}
+            <CreateMissionModal
+                isOpen={isCreateModalOpen}
+                onClose={() => setIsCreateModalOpen(false)}
+            />
+            <EditMissionModal
+                isOpen={isEditModalOpen}
+                onClose={() => setIsEditModalOpen(false)}
+                mission={selectedMission}
+            />
+            <DeleteMissionModal
+                isOpen={isDeleteModalOpen}
+                onClose={() => setIsDeleteModalOpen(false)}
+                onConfirm={confirmDelete}
+                missionName={selectedMission?.missionName}
+            />
+        </div>
+    );
+};
+
+export default Missions;
