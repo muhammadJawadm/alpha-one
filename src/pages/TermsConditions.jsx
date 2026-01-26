@@ -22,22 +22,9 @@ const TermsConditions = () => {
     };
 
     return (
-        <div className="min-h-screen bg-[#0F1729] p-8">
-            {/* Header with Back Button */}
-            <div className="mb-8 flex items-center gap-4">
-                <button
-                    onClick={() => navigate('/settings')}
-                    className="text-gray-400 hover:text-white transition-colors"
-                >
-                    <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                    </svg>
-                </button>
-                <h1 className="text-3xl font-semibold text-white">Terms & Conditions</h1>
-            </div>
-
+        <div>
             {/* Content Card */}
-            <div className="max-w-3xl mx-auto bg-[#2B3544] rounded-lg p-8">
+            <div className="max-w-5xl mx-auto bg-[#2B3544] rounded-lg p-8">
                 {/* Effective Date */}
                 <div className="mb-6">
                     <h2 className="text-lg font-semibold text-white">

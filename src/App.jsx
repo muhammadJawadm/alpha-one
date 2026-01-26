@@ -17,6 +17,7 @@ import LoginScreen from './pages/LoginScreen';
 import Employees from './pages/Employees';
 import EmployeeDetails from './pages/EmployeeDetails';
 import Missions from './pages/Missions';
+import Notifications from './pages/Notifications';
 
 export default function App() {
   return (
@@ -35,6 +36,7 @@ export default function App() {
           <Route path="employees" element={<Employees />} />
           <Route path="employees/:employeeId" element={<EmployeeDetails />} />
           <Route path="missions" element={<Missions />} />
+          <Route path="notifications" element={<Notifications />} />
           <Route path="profile" element={<Profile />} />
           <Route path="settings" element={<Settings />} />
           <Route path="settings/profile" element={<ProfileSettings />} />

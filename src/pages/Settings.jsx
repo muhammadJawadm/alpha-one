@@ -94,15 +94,9 @@ const Settings = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#0F1729] p-8">
-      {/* Header */}
-      <div className="mb-8">
-        <h1 className="text-3xl font-semibold text-white mb-2">Settings</h1>
-        <p className="text-gray-400 text-sm">Manage account preferences</p>
-      </div>
-
+    <div>
       {/* Settings Menu */}
-      <div className="max-w-3xl space-y-4">
+      <div className="max-w-full space-y-4">
         {settingsMenu.map((item) => (
           <button
             key={item.id}
@@ -116,7 +110,7 @@ const Settings = () => {
               <span className="text-white font-medium">{item.title}</span>
             </div>
             <svg
-              className="w-5 h-5 text-gray-400 group-hover:text-white transition-colors"
+              className="w-5 h-5 text-blue-500 group-hover:text-blue-800 transition-colors"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"

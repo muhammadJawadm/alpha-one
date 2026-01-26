@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Button from '../components/common/Button';
 
 const ProfileSettings = () => {
     const navigate = useNavigate();
@@ -39,22 +40,9 @@ const ProfileSettings = () => {
     };
 
     return (
-        <div className="min-h-screen bg-[#0F1729] p-8">
-            {/* Header with Back Button */}
-            <div className="mb-8 flex items-center gap-4">
-                <button
-                    onClick={() => navigate('/settings')}
-                    className="text-gray-400 hover:text-white transition-colors"
-                >
-                    <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                    </svg>
-                </button>
-                <h1 className="text-3xl font-semibold text-white">Profile Setting</h1>
-            </div>
-
+        <div>
             {/* Profile Form Card */}
-            <div className="max-w-2xl mx-auto bg-[#2B3544] rounded-lg p-8">
+            <div className="max-w-5xl mx-auto bg-[#2B3544] rounded-lg p-8">
                 <form onSubmit={handleSave} className="space-y-6">
                     {/* Profile Picture */}
                     <div className="flex justify-center mb-8">
@@ -153,12 +141,13 @@ const ProfileSettings = () => {
 
                     {/* Save Button */}
                     <div className="flex justify-end pt-4">
-                        <button
+                        <Button
                             type="submit"
-                            className="px-8 py-3 bg-[#3B82F6] hover:bg-[#2563EB] text-white font-medium rounded-lg transition-colors"
+                            variant="primary"
+                            size='lg'
                         >
                             Save
-                        </button>
+                        </Button>
                     </div>
                 </form>
             </div>

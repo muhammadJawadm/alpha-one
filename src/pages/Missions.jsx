@@ -171,18 +171,14 @@ const Missions = () => {
     );
 
     return (
-        <div className="min-h-screen bg-[#0F1729] p-8">
+        <div>
             {/* Header */}
-            <div className="mb-8">
-                <h1 className="text-3xl font-semibold text-white mb-2">Missions</h1>
-                <p className="text-gray-400 text-sm">Create and manage missions monitoring of employees</p>
-            </div>
 
             {/* Action Buttons */}
             <div className="flex gap-3 mb-6">
                 <button
                     onClick={() => setIsCreateModalOpen(true)}
-                    className="flex items-center gap-2 px-4 py-2.5 bg-[#3B82F6] hover:bg-[#2563EB] text-white text-sm font-medium rounded-lg transition-colors"
+                    className="flex items-center gap-2 px-4 py-2.5 bg-[#2B78B6] hover:bg-[#3a67c7] text-white text-sm font-medium rounded-lg transition-colors"
                 >
                     <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
@@ -191,7 +187,7 @@ const Missions = () => {
                 </button>
                 <button
                     onClick={handleImportFile}
-                    className="flex items-center gap-2 px-4 py-2.5 bg-[#3B82F6] hover:bg-[#2563EB] text-white text-sm font-medium rounded-lg transition-colors"
+                    className="flex items-center gap-2 px-4 py-2.5 bg-[#2B78B6] hover:bg-[#3a67c7] text-white text-sm font-medium rounded-lg transition-colors"
                 >
                     <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />

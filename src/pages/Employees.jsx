@@ -9,6 +9,7 @@ const Employees = () => {
     const [isAddEmployeeModalOpen, setIsAddEmployeeModalOpen] = useState(false);
     const [isCreateTeamModalOpen, setIsCreateTeamModalOpen] = useState(false);
     const [isLimitModalOpen, setIsLimitModalOpen] = useState(false);
+    const [openMenuId, setOpenMenuId] = useState(null);
 
     // Mock employee data
     const employees = [
@@ -28,19 +29,45 @@ const Employees = () => {
         navigate(`/employees/${employeeId}`, { state: { email } });
     };
 
-    return (
-        <div className="min-h-screen bg-[#0F1729] p-8">
-            {/* Header */}
-            <div className="mb-8">
-                <h1 className="text-3xl font-semibold text-white mb-2">Employees</h1>
-                <p className="text-gray-400 text-sm">Manage employees and their access to AlphaOne</p>
-            </div>
+    const toggleMenu = (employeeId, e) => {
+        e.stopPropagation();
+        setOpenMenuId(openMenuId === employeeId ? null : employeeId);
+    };
 
+    const handleViewDetails = (employee, e) => {
+        e.stopPropagation();
+        navigate(`/employees/${employee.id}`, { state: { email: employee.email } });
+        setOpenMenuId(null);
+    };
+
+    const handleActivate = (employee, e) => {
+        e.stopPropagation();
+        console.log('Activating employee:', employee.name);
+        // Add activation logic here
+        setOpenMenuId(null);
+    };
+
+    const handleDeactivate = (employee, e) => {
+        e.stopPropagation();
+        console.log('Deactivating employee:', employee.name);
+        // Add deactivation logic here
+        setOpenMenuId(null);
+    };
+
+    const handleDelete = (employee, e) => {
+        e.stopPropagation();
+        console.log('Deleting employee:', employee.name);
+        // Add delete confirmation and logic here
+        setOpenMenuId(null);
+    };
+
+    return (
+        <div>
             {/* Action Buttons */}
-            <div className="flex gap-3 mb-6">
+            <div className="flex flex-col sm:flex-row gap-3 mb-6">
                 <button
                     onClick={() => setIsAddEmployeeModalOpen(true)}
-                    className="flex items-center gap-2 px-4 py-2.5 bg-[#3B82F6] hover:bg-[#2563EB] text-white text-sm font-medium rounded-lg transition-colors"
+                    className="flex items-center justify-center gap-2 px-4 py-2.5 bg-[#2B78B6] hover:bg-[#3a67c7] text-white text-sm font-medium rounded-lg transition-colors w-full sm:w-auto"
                 >
                     <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
@@ -49,7 +76,7 @@ const Employees = () => {
                 </button>
                 <button
                     onClick={() => setIsCreateTeamModalOpen(true)}
-                    className="flex items-center gap-2 px-4 py-2.5 bg-[#3B82F6] hover:bg-[#2563EB] text-white text-sm font-medium rounded-lg transition-colors"
+                    className="flex items-center justify-center gap-2 px-4 py-2.5 bg-[#2B78B6] hover:bg-[#3a67c7] text-white text-sm font-medium rounded-lg transition-colors w-full sm:w-auto"
                 >
                     <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
@@ -60,16 +87,17 @@ const Employees = () => {
 
             {/* Employee Table */}
             <div className="bg-[#1A2332] rounded-lg overflow-hidden border border-[#2B3544]">
+                {/* Make table horizontally scrollable on mobile */}
                 <div className="overflow-x-auto">
-                    <table className="w-full">
+                    <table className="w-full min-w-[800px]">
                         <thead>
                             <tr className="border-b border-[#2B3544]">
-                                <th className="px-6 py-4 text-left text-sm font-medium text-white">Employee Id</th>
-                                <th className="px-6 py-4 text-left text-sm font-medium text-white">Name</th>
-                                <th className="px-6 py-4 text-left text-sm font-medium text-white">Team</th>
-                                <th className="px-6 py-4 text-left text-sm font-medium text-white">Email</th>
-                                <th className="px-6 py-4 text-left text-sm font-medium text-white">Status</th>
-                                <th className="px-6 py-4 text-left text-sm font-medium text-white">Actions</th>
+                                <th className="px-4 sm:px-6 py-4 text-left text-xs sm:text-sm font-medium text-white">Employee Id</th>
+                                <th className="px-4 sm:px-6 py-4 text-left text-xs sm:text-sm font-medium text-white">Name</th>
+                                <th className="px-4 sm:px-6 py-4 text-left text-xs sm:text-sm font-medium text-white">Team</th>
+                                <th className="px-4 sm:px-6 py-4 text-left text-xs sm:text-sm font-medium text-white">Email</th>
+                                <th className="px-4 sm:px-6 py-4 text-left text-xs sm:text-sm font-medium text-white">Status</th>
+                                <th className="px-4 sm:px-6 py-4 text-left text-xs sm:text-sm font-medium text-white">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -79,26 +107,23 @@ const Employees = () => {
                                     onClick={() => handleRowClick(employee.id, employee.email)}
                                     className="border-b border-[#2B3544] hover:bg-[#2B3544]/30 cursor-pointer transition-colors"
                                 >
-                                    <td className="px-6 py-4 text-sm text-gray-300">ID # {employee.id}</td>
-                                    <td className="px-6 py-4 text-sm text-white">{employee.name}</td>
-                                    <td className="px-6 py-4 text-sm text-gray-300">{employee.team}</td>
-                                    <td className="px-6 py-4 text-sm text-gray-300">{employee.email}</td>
-                                    <td className="px-6 py-4">
+                                    <td className="px-4 sm:px-6 py-4 text-xs sm:text-sm text-gray-300">ID # {employee.id}</td>
+                                    <td className="px-4 sm:px-6 py-4 text-xs sm:text-sm text-white">{employee.name}</td>
+                                    <td className="px-4 sm:px-6 py-4 text-xs sm:text-sm text-gray-300">{employee.team}</td>
+                                    <td className="px-4 sm:px-6 py-4 text-xs sm:text-sm text-gray-300">{employee.email}</td>
+                                    <td className="px-4 sm:px-6 py-4">
                                         <span
-                                            className={`inline-block px-3 py-1 text-xs font-medium rounded-full ${employee.status === 'Active'
-                                                    ? 'bg-green-500/20 text-green-400'
-                                                    : 'bg-orange-500/20 text-orange-400'
+                                            className={`inline-block px-2 sm:px-3 py-1 text-xs font-medium rounded-full ${employee.status === 'Active'
+                                                ? 'bg-green-500/20 text-green-400'
+                                                : 'bg-orange-500/20 text-orange-400'
                                                 }`}
                                         >
                                             {employee.status}
                                         </span>
                                     </td>
-                                    <td className="px-6 py-4">
+                                    <td className="px-4 sm:px-6 py-4 relative">
                                         <button
-                                            onClick={(e) => {
-                                                e.stopPropagation();
-                                                console.log('Actions for', employee.name);
-                                            }}
+                                            onClick={(e) => toggleMenu(`${employee.id}-${index}`, e)}
                                             className="p-1 hover:bg-white/10 rounded transition-colors"
                                         >
                                             <svg className="w-5 h-5 text-gray-400" fill="currentColor" viewBox="0 0 24 24">
@@ -107,6 +132,48 @@ const Employees = () => {
                                                 <circle cx="12" cy="19" r="2" />
                                             </svg>
                                         </button>
+
+                                        {/* Dropdown Menu */}
+                                        {openMenuId === `${employee.id}-${index}` && (
+                                            <>
+                                                {/* Backdrop to close menu */}
+                                                <div
+                                                    className="fixed inset-0 z-10"
+                                                    onClick={(e) => {
+                                                        e.stopPropagation();
+                                                        setOpenMenuId(null);
+                                                    }}
+                                                />
+
+                                                {/* Menu */}
+                                                <div className="absolute right-0 top-full mt-1 w-56 bg-[#2B3544] rounded-lg shadow-lg border border-[#374151] overflow-hidden z-20">
+                                                    <button
+                                                        onClick={(e) => handleViewDetails(employee, e)}
+                                                        className="w-full px-4 py-3 text-left text-white hover:bg-[#374151] transition-colors border-b border-[#374151] text-sm sm:text-base"
+                                                    >
+                                                        View Details
+                                                    </button>
+                                                    <button
+                                                        onClick={(e) => handleActivate(employee, e)}
+                                                        className="w-full px-4 py-3 text-left text-white hover:bg-[#374151] transition-colors border-b border-[#374151] text-sm sm:text-base"
+                                                    >
+                                                        Activate
+                                                    </button>
+                                                    <button
+                                                        onClick={(e) => handleDeactivate(employee, e)}
+                                                        className="w-full px-4 py-3 text-left text-white hover:bg-[#374151] transition-colors border-b border-[#374151] text-sm sm:text-base"
+                                                    >
+                                                        Deactivate
+                                                    </button>
+                                                    <button
+                                                        onClick={(e) => handleDelete(employee, e)}
+                                                        className="w-full px-4 py-3 text-left text-white hover:bg-[#374151] transition-colors text-sm sm:text-base"
+                                                    >
+                                                        Delete Permanently
+                                                    </button>
+                                                </div>
+                                            </>
+                                        )}
                                     </td>
                                 </tr>
                             ))}

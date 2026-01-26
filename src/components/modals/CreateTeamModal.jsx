@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Button from '../common/Button';
 
 const CreateTeamModal = ({ isOpen, onClose }) => {
     const [teamName, setTeamName] = useState('');
@@ -41,7 +42,7 @@ const CreateTeamModal = ({ isOpen, onClose }) => {
             />
 
             {/* Modal */}
-            <div className="relative bg-[#2B3544] rounded-lg w-full max-w-md mx-4 p-6">
+            <div className="relative bg-[#2B3544] rounded-lg w-full max-w-md mx-4 p-8">
                 {/* Close Button */}
                 <button
                     onClick={onClose}
@@ -93,14 +94,14 @@ const CreateTeamModal = ({ isOpen, onClose }) => {
                                             }}
                                             className="hover:text-red-400 transition-colors"
                                         >
-                                            <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                                             </svg>
                                         </button>
                                     </span>
                                 ))}
                                 {selectedMembers.length === 0 && (
-                                    <span className="text-gray-500 text-sm">Select members</span>
+                                    <span className="text-gray-500 text-sm mt-1">Select members</span>
                                 )}
                                 <svg className="w-4 h-4 ml-auto text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
@@ -130,7 +131,7 @@ const CreateTeamModal = ({ isOpen, onClose }) => {
                     </div>
 
                     {/* Code */}
-                    <div>
+                    <div className='mb-10'>
                         <input
                             type="text"
                             value={code}
@@ -142,12 +143,13 @@ const CreateTeamModal = ({ isOpen, onClose }) => {
                     </div>
 
                     {/* Submit Button */}
-                    <button
+                    <Button
                         type="submit"
-                        className="w-full py-3 bg-[#3B82F6] hover:bg-[#2563EB] text-white font-medium rounded-lg transition-colors mt-6"
+                        variant="primary"
+                        fullWidth
                     >
                         Add Employee
-                    </button>
+                    </Button>
                 </form>
             </div>
         </div>

@@ -1,4 +1,10 @@
 import { useState } from 'react';
+import visa from '../../assets/Processor.png'
+import master from '../../assets/Processor-1.png'
+import amercican from '../../assets/Processor-2.png'
+import discover from '../../assets/Processor-3.png'
+import Button from '../common/Button'
+
 
 const AddPaymentModal = ({ isOpen, onClose }) => {
     const [formData, setFormData] = useState({
@@ -88,24 +94,16 @@ const AddPaymentModal = ({ isOpen, onClose }) => {
                             required
                         />
                         {/* Card Type Logos */}
-                        <div className="absolute right-3 top-1/2 -translate-y-1/2 flex gap-1">
-                            <div className={`w-8 h-5 rounded flex items-center justify-center text-[10px] font-bold ${cardType === 'visa' ? 'bg-white text-[#1A1F71]' : 'bg-gray-600'}`}>
-                                VISA
-                            </div>
-                            <div className={`w-8 h-5 rounded flex items-center justify-center ${cardType === 'mastercard' ? 'bg-gradient-to-r from-red-500 to-orange-500' : 'bg-gray-600'}`}>
-                                <div className="w-2 h-2 rounded-full bg-white"></div>
-                            </div>
-                            <div className={`w-8 h-5 rounded flex items-center justify-center text-[10px] font-bold ${cardType === 'amex' ? 'bg-blue-600 text-white' : 'bg-gray-600'}`}>
-                                AMEX
-                            </div>
-                            <div className={`w-8 h-5 rounded flex items-center justify-center ${cardType === 'discover' ? 'bg-orange-500' : 'bg-gray-600'}`}>
-                                <div className="w-2 h-2 rounded-full bg-white"></div>
-                            </div>
+                        <div className="absolute right-3 top-1/2 transform -translate-y-1/2 flex gap-1">
+                            <img src={visa} alt="Visa" className="h-5" />
+                            <img src={master} alt="Mastercard" className="h-5" />
+                            <img src={amercican} alt="Amex" className="h-5" />
+                            <img src={discover} alt="Discover" className="h-5" />
                         </div>
                     </div>
 
                     {/* Expiry and CVC */}
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid grid-cols-2 gap-4 mb-10">
                         <input
                             type="text"
                             name="expiry"
@@ -132,12 +130,13 @@ const AddPaymentModal = ({ isOpen, onClose }) => {
                     </div>
 
                     {/* Add Button */}
-                    <button
+                    <Button
                         type="submit"
-                        className="w-full py-3 bg-[#3B82F6] hover:bg-[#2563EB] text-white font-medium rounded-lg transition-colors mt-6"
+                        variant="primary"
+                        fullWidth
                     >
                         Add
-                    </button>
+                    </Button>
                 </form>
             </div>
         </div>

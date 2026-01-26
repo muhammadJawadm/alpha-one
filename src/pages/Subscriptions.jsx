@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import AddPaymentModal from '../components/modals/AddPaymentModal';
+import Button from '../components/common/Button';
 
 const Subscriptions = () => {
     const navigate = useNavigate();
@@ -16,24 +17,11 @@ const Subscriptions = () => {
     };
 
     return (
-        <div className="min-h-screen bg-[#0F1729] p-8">
-            {/* Header with Back Button */}
-            <div className="mb-8 flex items-center gap-4">
-                <button
-                    onClick={() => navigate('/settings')}
-                    className="text-gray-400 hover:text-white transition-colors"
-                >
-                    <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                    </svg>
-                </button>
-                <h1 className="text-3xl font-semibold text-white">Subscriptions</h1>
-            </div>
-
+        <div>
             {/* Subscription Card */}
-            <div className="max-w-4xl mx-auto bg-[#2B3544] rounded-lg p-8">
+            <div className="max-w-5xl mx-auto bg-[#2B3544] rounded-lg p-8">
                 {/* Payment Method Section */}
-                <div className="mb-8">
+                <div className="mb-8 bg-[#1A2332] rounded-lg p-6">
                     <h2 className="text-xl font-semibold text-white mb-4">Payment Method</h2>
                     <div className="flex gap-4">
                         {/* Current Card */}
@@ -66,7 +54,7 @@ const Subscriptions = () => {
                 {/* Subscription Plans */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {/* Starter Plan */}
-                    <div className="bg-gradient-to-br from-[#3B82F6] to-[#2563EB] rounded-lg p-6">
+                    <div className="bg-[#2B78B6] hover:bg-[#3a67c7] rounded-lg p-6">
                         <div className="mb-4">
                             <h3 className="text-xl font-bold text-white mb-1">Starter Plan</h3>
                             <p className="text-blue-100 text-sm">up to 20 Agents</p>
@@ -109,12 +97,14 @@ const Subscriptions = () => {
                             Designed for growing teams with higher mission volume
                         </p>
 
-                        <button
+                        <Button
                             onClick={() => handleSelectPlan('pro')}
-                            className="w-full py-3 bg-[#3B82F6] hover:bg-[#2563EB] text-white font-medium rounded-lg transition-colors"
+                            variant='primary'
+                            fullWidth
+
                         >
                             Select
-                        </button>
+                        </Button>
                     </div>
                 </div>
             </div>

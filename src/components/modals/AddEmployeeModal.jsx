@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Button from '../common/Button';
 
 const AddEmployeeModal = ({ isOpen, onClose }) => {
     const [formData, setFormData] = useState({
@@ -33,7 +34,7 @@ const AddEmployeeModal = ({ isOpen, onClose }) => {
             />
 
             {/* Modal */}
-            <div className="relative bg-[#2B3544] rounded-lg w-full max-w-md mx-4 p-6">
+            <div className="relative bg-[#2B3544] rounded-lg w-full max-w-md mx-4 p-8 ">
                 {/* Close Button */}
                 <button
                     onClick={onClose}
@@ -51,7 +52,7 @@ const AddEmployeeModal = ({ isOpen, onClose }) => {
                 </div>
 
                 {/* Form */}
-                <form onSubmit={handleSubmit} className="space-y-4">
+                <form onSubmit={handleSubmit} className="space-y-6">
                     {/* Employee Name */}
                     <div>
                         <input
@@ -79,7 +80,7 @@ const AddEmployeeModal = ({ isOpen, onClose }) => {
                     </div>
 
                     {/* Email */}
-                    <div>
+                    <div className='mb-10'>
                         <input
                             type="email"
                             name="email"
@@ -92,12 +93,13 @@ const AddEmployeeModal = ({ isOpen, onClose }) => {
                     </div>
 
                     {/* Submit Button */}
-                    <button
+                    <Button
                         type="submit"
-                        className="w-full py-3 bg-[#3B82F6] hover:bg-[#2563EB] text-white font-medium rounded-lg transition-colors mt-6"
+                        variant="primary"
+                        fullWidth
                     >
                         Add Employee
-                    </button>
+                    </Button>
                 </form>
             </div>
         </div>

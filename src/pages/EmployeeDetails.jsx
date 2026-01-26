@@ -112,10 +112,9 @@ const EmployeeDetails = () => {
     );
 
     return (
-        <div className="min-h-screen bg-[#0F1729] p-8">
+        <div>
             {/* Header */}
             <div className="mb-8">
-                <h1 className="text-3xl font-semibold text-white mb-2">Employees Details</h1>
                 <p className="text-gray-400 text-sm">
                     ID # {employeeId} | {email}
                 </p>

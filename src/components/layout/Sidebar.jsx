@@ -3,7 +3,7 @@ import { SIDEBAR_ITEMS, SIDEBAR_BOTTOM_ITEMS } from '../../constants';
 import { classNames } from '../../utils/helpers';
 import logo from '../../assets/logo2.png';
 
-const Sidebar = () => {
+const Sidebar = ({ isOpen, onClose }) => {
   const location = useLocation();
 
   // Icon components
@@ -43,22 +43,38 @@ const Sidebar = () => {
   };
 
   return (
-    <aside className="w-52 bg-[#1A2332] min-h-screen flex flex-col">
+    <aside className={`
+      w-52 bg-[#1A2332] h-screen flex flex-col overflow-hidden
+      fixed md:relative z-40
+      transition-transform duration-300 ease-in-out
+      ${isOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}
+    `}>
       {/* Logo Section */}
-      <div className="p-6 pb-8">
+      <div className="p-6 pb-8 flex-shrink-0 flex items-center justify-between">
         <div className="flex items-center gap-3">
           <img src={logo} alt="AlphaOne Logo" className="w-40 h-12" />
         </div>
+
+        {/* Close button - Only visible on mobile */}
+        <button
+          onClick={onClose}
+          className="md:hidden text-gray-400 hover:text-white transition-colors"
+        >
+          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
       </div>
 
-      {/* Main Navigation */}
-      <nav className="flex-1 px-4 space-y-1">
+      {/* Main Navigation - Scrollable */}
+      <nav className="flex-1 px-4 space-y-1 overflow-y-auto">
         {SIDEBAR_ITEMS.map((item) => {
           const isActive = location.pathname === item.path;
           return (
             <Link
               key={item.path}
               to={item.path}
+              onClick={onClose} // Close sidebar on mobile when link is clicked
               className={classNames(
                 'flex items-center gap-3 px-4 py-3 rounded-lg transition-colors text-sm',
                 isActive
@@ -73,14 +89,15 @@ const Sidebar = () => {
         })}
       </nav>
 
-      {/* Bottom Navigation (Settings) */}
-      <div className="px-4 pb-6 space-y-1">
+      {/* Bottom Navigation (Settings) - Always Visible */}
+      <div className="px-4 pb-6 space-y-1 flex-shrink-0">
         {SIDEBAR_BOTTOM_ITEMS.map((item) => {
           const isActive = location.pathname === item.path;
           return (
             <Link
               key={item.path}
               to={item.path}
+              onClick={onClose} // Close sidebar on mobile when link is clicked
               className={classNames(
                 'flex items-center gap-3 px-4 py-3 rounded-lg transition-colors text-sm',
                 isActive
