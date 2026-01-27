@@ -45,9 +45,9 @@ const Sidebar = ({ isOpen, onClose }) => {
   return (
     <aside className={`
       w-52 bg-[#1A2332] h-screen flex flex-col overflow-hidden
-      fixed md:relative z-40
+      fixed z-40
       transition-transform duration-300 ease-in-out
-      ${isOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}
+      ${isOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
     `}>
       {/* Logo Section */}
       <div className="p-6 pb-8 flex-shrink-0 flex items-center justify-between">
@@ -55,10 +55,10 @@ const Sidebar = ({ isOpen, onClose }) => {
           <img src={logo} alt="AlphaOne Logo" className="w-40 h-12" />
         </div>
 
-        {/* Close button - Only visible on mobile */}
+        {/* Close button - Only visible on screens below lg */}
         <button
           onClick={onClose}
-          className="md:hidden text-gray-400 hover:text-white transition-colors"
+          className="lg:hidden text-gray-400 hover:text-white transition-colors"
         >
           <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -101,7 +101,7 @@ const Sidebar = ({ isOpen, onClose }) => {
               className={classNames(
                 'flex items-center gap-3 px-4 py-3 rounded-lg transition-colors text-sm',
                 isActive
-                  ? 'bg-[#2563EB] text-white font-medium'
+                  ? 'bg-[#2B78B6] text-white font-medium'
                   : 'text-gray-400 hover:bg-[#243447] hover:text-gray-200'
               )}
             >

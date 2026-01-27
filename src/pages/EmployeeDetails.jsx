@@ -93,10 +93,10 @@ const EmployeeDetails = () => {
 
     const getStatusBadge = (status) => {
         const statusStyles = {
-            'Acknowledged': 'bg-blue-500/20 text-blue-400',
-            'Check-In': 'bg-green-500/20 text-green-400',
-            'Missed': 'bg-red-500/20 text-red-400',
-            'Inactive': 'bg-gray-500/20 text-gray-400'
+            'Acknowledged': 'bg-[#3B82F6] text-white',
+            'Check-In': 'bg-[#10B981] text-white',
+            'Missed': 'bg-[#EF4444] text-white',
+            'Inactive': 'bg-[#94A3B8] text-white'
         };
 
         return (
@@ -112,7 +112,7 @@ const EmployeeDetails = () => {
     );
 
     return (
-        <div>
+        <div className="p-2 w-full">
             {/* Header */}
             <div className="mb-8">
                 <p className="text-gray-400 text-sm">
@@ -156,13 +156,13 @@ const EmployeeDetails = () => {
                     <table className="w-full">
                         <thead>
                             <tr className="border-b border-[#2B3544]">
-                                <th className="px-6 py-4 text-left text-sm font-medium text-white">Mission Name</th>
-                                <th className="px-6 py-4 text-left text-sm font-medium text-white">Location</th>
-                                <th className="px-6 py-4 text-left text-sm font-medium text-white">H-60</th>
-                                <th className="px-6 py-4 text-left text-sm font-medium text-white">H-0</th>
-                                <th className="px-6 py-4 text-left text-sm font-medium text-white">Start Time</th>
-                                <th className="px-6 py-4 text-left text-sm font-medium text-white">End Time</th>
-                                <th className="px-6 py-4 text-left text-sm font-medium text-white">Actions</th>
+                                <th className="px-6 py-4 text-left text-sm font-medium text-white border border-[#3B82F6]">Mission Name</th>
+                                <th className="px-6 py-4 text-left text-sm font-medium text-white border border-[#3B82F6]">Location</th>
+                                <th className="px-6 py-4 text-left text-sm font-medium text-white border border-[#3B82F6]">H-60</th>
+                                <th className="px-6 py-4 text-left text-sm font-medium text-white border border-[#3B82F6]">H-0</th>
+                                <th className="px-6 py-4 text-left text-sm font-medium text-white border border-[#3B82F6]">Start Time</th>
+                                <th className="px-6 py-4 text-left text-sm font-medium text-white border border-[#3B82F6]">End Time</th>
+                                <th className="px-6 py-4 text-left text-sm font-medium text-white border border-[#3B82F6]">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -171,13 +171,13 @@ const EmployeeDetails = () => {
                                     key={index}
                                     className="border-b border-[#2B3544] hover:bg-[#2B3544]/30 transition-colors"
                                 >
-                                    <td className="px-6 py-4 text-sm text-white">{mission.missionName}</td>
-                                    <td className="px-6 py-4 text-sm text-gray-300">{mission.location}</td>
-                                    <td className="px-6 py-4">{getStatusBadge(mission.h60)}</td>
-                                    <td className="px-6 py-4">{getStatusBadge(mission.h0)}</td>
-                                    <td className="px-6 py-4 text-sm text-gray-300">{mission.startTime}</td>
-                                    <td className="px-6 py-4 text-sm text-gray-300">{mission.endTime}</td>
-                                    <td className="px-6 py-4">
+                                    <td className="px-6 py-4 text-sm text-white border border-[#3B82F6]">{mission.missionName}</td>
+                                    <td className="px-6 py-4 text-sm text-gray-300 border border-[#3B82F6]">{mission.location}</td>
+                                    <td className="px-6 py-4 border border-[#3B82F6]">{getStatusBadge(mission.h60)}</td>
+                                    <td className="px-6 py-4 border border-[#3B82F6]">{getStatusBadge(mission.h0)}</td>
+                                    <td className="px-6 py-4 text-sm text-gray-300 border border-[#3B82F6]">{mission.startTime}</td>
+                                    <td className="px-6 py-4 text-sm text-gray-300 border border-[#3B82F6]">{mission.endTime}</td>
+                                    <td className="px-6 py-4 border border-[#3B82F6]">
                                         <button
                                             onClick={() => console.log('Actions for', mission.missionName)}
                                             className="p-1 hover:bg-white/10 rounded transition-colors"

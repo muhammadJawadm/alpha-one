@@ -27,8 +27,8 @@ const Subscription = () => {
   const handleSelectPlan = (planId) => {
     setSelectedPlan(planId);
     console.log('Selected plan:', planId);
-    // Navigate to dashboard or next step
-    navigate('/dashboard');
+    // Navigate to payment page
+    navigate('/payment');
   };
 
   return (
@@ -36,7 +36,7 @@ const Subscription = () => {
       {/* Logo */}
       <div className="mb-16">
         <img className="w-40 h-auto mx-auto mb-4" src={logo} alt="AlphaOne Logo" />
-        
+
       </div>
 
       {/* Pricing Cards */}

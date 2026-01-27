@@ -92,12 +92,12 @@ const Employees = () => {
                     <table className="w-full min-w-[800px]">
                         <thead>
                             <tr className="border-b border-[#2B3544]">
-                                <th className="px-4 sm:px-6 py-4 text-left text-xs sm:text-sm font-medium text-white">Employee Id</th>
-                                <th className="px-4 sm:px-6 py-4 text-left text-xs sm:text-sm font-medium text-white">Name</th>
-                                <th className="px-4 sm:px-6 py-4 text-left text-xs sm:text-sm font-medium text-white">Team</th>
-                                <th className="px-4 sm:px-6 py-4 text-left text-xs sm:text-sm font-medium text-white">Email</th>
-                                <th className="px-4 sm:px-6 py-4 text-left text-xs sm:text-sm font-medium text-white">Status</th>
-                                <th className="px-4 sm:px-6 py-4 text-left text-xs sm:text-sm font-medium text-white">Actions</th>
+                                <th className="px-4 sm:px-6 py-4 text-left text-xs sm:text-sm font-medium text-white border border-[#3B82F6]">Employee Id</th>
+                                <th className="px-4 sm:px-6 py-4 text-left text-xs sm:text-sm font-medium text-white border border-[#3B82F6]">Name</th>
+                                <th className="px-4 sm:px-6 py-4 text-left text-xs sm:text-sm font-medium text-white border border-[#3B82F6]">Team</th>
+                                <th className="px-4 sm:px-6 py-4 text-left text-xs sm:text-sm font-medium text-white border border-[#3B82F6]">Email</th>
+                                <th className="px-4 sm:px-6 py-4 text-left text-xs sm:text-sm font-medium text-white border border-[#3B82F6]">Status</th>
+                                <th className="px-4 sm:px-6 py-4 text-left text-xs sm:text-sm font-medium text-white border border-[#3B82F6]">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -107,21 +107,21 @@ const Employees = () => {
                                     onClick={() => handleRowClick(employee.id, employee.email)}
                                     className="border-b border-[#2B3544] hover:bg-[#2B3544]/30 cursor-pointer transition-colors"
                                 >
-                                    <td className="px-4 sm:px-6 py-4 text-xs sm:text-sm text-gray-300">ID # {employee.id}</td>
-                                    <td className="px-4 sm:px-6 py-4 text-xs sm:text-sm text-white">{employee.name}</td>
-                                    <td className="px-4 sm:px-6 py-4 text-xs sm:text-sm text-gray-300">{employee.team}</td>
-                                    <td className="px-4 sm:px-6 py-4 text-xs sm:text-sm text-gray-300">{employee.email}</td>
-                                    <td className="px-4 sm:px-6 py-4">
+                                    <td className="px-4 sm:px-6 py-4 text-xs sm:text-sm text-gray-300 border border-[#3B82F6]">ID # {employee.id}</td>
+                                    <td className="px-4 sm:px-6 py-4 text-xs sm:text-sm text-white border border-[#3B82F6]">{employee.name}</td>
+                                    <td className="px-4 sm:px-6 py-4 text-xs sm:text-sm text-gray-300 border border-[#3B82F6]">{employee.team}</td>
+                                    <td className="px-4 sm:px-6 py-4 text-xs sm:text-sm text-gray-300 border border-[#3B82F6]">{employee.email}</td>
+                                    <td className="px-4 sm:px-6 py-4 border border-[#3B82F6]">
                                         <span
                                             className={`inline-block px-2 sm:px-3 py-1 text-xs font-medium rounded-full ${employee.status === 'Active'
-                                                ? 'bg-green-500/20 text-green-400'
-                                                : 'bg-orange-500/20 text-orange-400'
+                                                ? 'bg-[#10B981] text-white'
+                                                : 'bg-[#F59E0B] text-white'
                                                 }`}
                                         >
                                             {employee.status}
                                         </span>
                                     </td>
-                                    <td className="px-4 sm:px-6 py-4 relative">
+                                    <td className="px-4 sm:px-6 py-4 relative border border-[#3B82F6]">
                                         <button
                                             onClick={(e) => toggleMenu(`${employee.id}-${index}`, e)}
                                             className="p-1 hover:bg-white/10 rounded transition-colors"
@@ -146,22 +146,22 @@ const Employees = () => {
                                                 />
 
                                                 {/* Menu */}
-                                                <div className="absolute right-0 top-full mt-1 w-56 bg-[#2B3544] rounded-lg shadow-lg border border-[#374151] overflow-hidden z-20">
+                                                <div className="absolute right-0 top-full mt-1 w-56 bg-[#2B3544] rounded-lg shadow-lg border border-[#3B82F6] overflow-hidden z-20">
                                                     <button
                                                         onClick={(e) => handleViewDetails(employee, e)}
-                                                        className="w-full px-4 py-3 text-left text-white hover:bg-[#374151] transition-colors border-b border-[#374151] text-sm sm:text-base"
+                                                        className="w-full px-4 py-3 text-left text-white hover:bg-[#374151] transition-colors border-b border-[#3B82F6] text-sm sm:text-base"
                                                     >
                                                         View Details
                                                     </button>
                                                     <button
                                                         onClick={(e) => handleActivate(employee, e)}
-                                                        className="w-full px-4 py-3 text-left text-white hover:bg-[#374151] transition-colors border-b border-[#374151] text-sm sm:text-base"
+                                                        className="w-full px-4 py-3 text-left text-white hover:bg-[#374151] transition-colors border-b border-[#3B82F6] text-sm sm:text-base"
                                                     >
                                                         Activate
                                                     </button>
                                                     <button
                                                         onClick={(e) => handleDeactivate(employee, e)}
-                                                        className="w-full px-4 py-3 text-left text-white hover:bg-[#374151] transition-colors border-b border-[#374151] text-sm sm:text-base"
+                                                        className="w-full px-4 py-3 text-left text-white hover:bg-[#374151] transition-colors border-b border-[#3B82F6] text-sm sm:text-base"
                                                     >
                                                         Deactivate
                                                     </button>

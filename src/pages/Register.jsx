@@ -3,7 +3,10 @@ import Button from '../components/common/Button';
 import Input from '../components/common/Input';
 import logo from '../assets/logo.png'
 import { IoIosArrowDown } from 'react-icons/io';
+import { useNavigate } from 'react-router-dom';
+
 const Register = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     companyName: '',
     companyEmail: '',
@@ -124,9 +127,9 @@ const Register = () => {
                 fullWidth
                 type="submit"
                 variant="primary"
-                navigate="/subscription"
+
                 onClick={handleSubmit}
-                >
+              >
                 Continue Registration
               </Button>
             </form>

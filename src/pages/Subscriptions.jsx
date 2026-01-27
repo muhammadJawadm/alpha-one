@@ -19,11 +19,11 @@ const Subscriptions = () => {
     return (
         <div>
             {/* Subscription Card */}
-            <div className="max-w-5xl mx-auto bg-[#2B3544] rounded-lg p-8">
+            <div className="max-w-5xl mx-auto bg-[#2B3544] rounded-lg md:p-8 p-4 ">
                 {/* Payment Method Section */}
                 <div className="mb-8 bg-[#1A2332] rounded-lg p-6">
                     <h2 className="text-xl font-semibold text-white mb-4">Payment Method</h2>
-                    <div className="flex gap-4">
+                    <div className="flex md:flex-row flex-col gap-4">
                         {/* Current Card */}
                         <div className="flex-1 flex items-center gap-4 p-4 bg-[#1A2332] rounded-lg border border-[#3B82F6]">
                             {/* VISA Logo */}

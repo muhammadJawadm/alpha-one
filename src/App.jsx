@@ -18,6 +18,8 @@ import Employees from './pages/Employees';
 import EmployeeDetails from './pages/EmployeeDetails';
 import Missions from './pages/Missions';
 import Notifications from './pages/Notifications';
+import SignUpScreen from './pages/SignUpScreen';
+import VerificationScreen from './pages/VerificationScreen';
 
 export default function App() {
   return (
@@ -28,6 +30,8 @@ export default function App() {
         <Route path="/subscription" element={<Subscription />} />
         <Route path="/payment" element={<Payment />} />
         <Route path="/login" element={<LoginScreen />} />
+        <Route path="/signup" element={<SignUpScreen />} />
+        <Route path="/verification" element={<VerificationScreen />} />
 
 
         {/* Dashboard and other pages with layout */}

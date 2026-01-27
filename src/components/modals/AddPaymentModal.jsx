@@ -57,7 +57,7 @@ const AddPaymentModal = ({ isOpen, onClose }) => {
     if (!isOpen) return null;
 
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 overflow-y-auto">
             {/* Backdrop */}
             <div
                 className="absolute inset-0 bg-black/60 backdrop-blur-sm"
@@ -65,7 +65,7 @@ const AddPaymentModal = ({ isOpen, onClose }) => {
             />
 
             {/* Modal */}
-            <div className="relative bg-[#2B3544] rounded-lg w-full max-w-md mx-4 p-8">
+            <div className="relative bg-[#2B3544] rounded-lg w-full max-w-md mx-4 p-8 my-auto max-h-[90vh] overflow-y-auto">
                 <h2 className="text-2xl font-semibold text-white mb-6">Add Payment Details</h2>
 
                 <form onSubmit={handleSubmit} className="space-y-4">

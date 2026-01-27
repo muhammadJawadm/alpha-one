@@ -1,7 +1,17 @@
 import React, { useState } from 'react';
+import AddSOSIssueModal from '../components/modals/AddSOSIssueModal';
 
 const Dashboard = () => {
   const [selectedMonth, setSelectedMonth] = useState('January');
+  const [showSOSModal, setShowSOSModal] = useState(false);
+  const [resetRequests, setResetRequests] = useState([
+    { id: 1, name: 'John Martinez', message: 'I need to change my password because I suspect that my account may...' },
+    { id: 2, name: 'Sarah', message: 'I need to change my password because I suspect that my account may...' },
+    { id: 3, name: 'Michael Thompson', message: 'I received an email that I didn\'t expect and it has made me concerned a...' },
+    { id: 4, name: 'Emma Garcia', message: 'I noticed some unfamiliar transactions on my account and would like to...' },
+    { id: 5, name: 'David Lee', message: 'I think my account details may have been exposed and I want to chang...' },
+  ]);
+
 
   // Stat cards data
   const stats = [
@@ -51,14 +61,17 @@ const Dashboard = () => {
     },
   ];
 
-  // Reset requests data
-  const resetRequests = [
-    { id: 1, name: 'John Martinez', message: 'I need to change my password because I suspect that my account may...' },
-    { id: 2, name: 'Sarah', message: 'I need to change my password because I suspect that my account may...' },
-    { id: 3, name: 'Michael Thompson', message: 'I received an email that I didn\'t expect and it has made me concerned a...' },
-    { id: 4, name: 'Emma Garcia', message: 'I noticed some unfamiliar transactions on my account and would like to...' },
-    { id: 5, name: 'David Lee', message: 'I think my account details may have been exposed and I want to chang...' },
-  ];
+  // Handler functions
+  const handleAddSOSIssue = (issueData) => {
+    const newIssue = {
+      id: resetRequests.length + 1,
+      name: issueData.name,
+      message: issueData.issue,
+    };
+    setResetRequests([newIssue, ...resetRequests]);
+    setShowSOSModal(false);
+  };
+
 
   // Employee schedules
   const schedules = [
@@ -155,7 +168,27 @@ const Dashboard = () => {
         {/* Code Reset Requests - 2/3 width */}
         <div className="lg:col-span-1">
           <div className="bg-[#1E293B] rounded-xl p-6">
-            <h2 className="text-white text-xl font-semibold mb-4">Code Reset Requests</h2>
+            <div className="flex items-center justify-between mb-4">
+              <h2 className="text-white text-xl font-semibold">SOS Issues Report</h2>
+              <button
+                onClick={() => setShowSOSModal(true)}
+                className="flex items-center gap-1 text-blue-400 hover:text-blue-300 transition-colors text-sm font-medium"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-5 w-5"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+                Add
+              </button>
+            </div>
             <div className="space-y-3">
               {resetRequests.map((request) => (
                 <div
@@ -263,6 +296,14 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
+
+      {/* Add SOS Issue Modal */}
+      {showSOSModal && (
+        <AddSOSIssueModal
+          onClose={() => setShowSOSModal(false)}
+          onSubmit={handleAddSOSIssue}
+        />
+      )}
     </div>
   );
 };

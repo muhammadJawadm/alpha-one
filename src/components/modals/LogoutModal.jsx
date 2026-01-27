@@ -2,7 +2,7 @@ const LogoutModal = ({ isOpen, onClose, onConfirm }) => {
     if (!isOpen) return null;
 
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 overflow-y-auto">
             {/* Backdrop */}
             <div
                 className="absolute inset-0 bg-black/60 backdrop-blur-sm"
@@ -10,7 +10,7 @@ const LogoutModal = ({ isOpen, onClose, onConfirm }) => {
             />
 
             {/* Modal */}
-            <div className="relative bg-[#2B3544] rounded-lg w-full max-w-sm mx-4 p-8">
+            <div className="relative bg-[#2B3544] rounded-lg w-full max-w-sm mx-4 p-8 my-auto max-h-[90vh] overflow-y-auto">
                 {/* Content */}
                 <div className="text-center mb-8">
                     <h2 className="text-xl font-semibold text-white mb-3">Logout</h2>

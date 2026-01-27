@@ -26,7 +26,7 @@ const Payment = () => {
     e.preventDefault();
     console.log('Payment data:', formData);
     // Process payment and navigate to dashboard
-    navigate('/dashboard');
+    navigate('/singup');
   };
 
   return (
@@ -70,7 +70,7 @@ const Payment = () => {
                   className="w-full px-4 py-3 bg-bg-primary text-white border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-gray-500"
                   required
                 />
-                <div className="absolute right-3 top-1/2 transform -translate-y-1/2 flex gap-1">
+                <div className="absolute right-3 top-1/2 transform -translate-y-1/2 flex gap-1 hidden md:flex">
                   <img src={visa} alt="Visa" className="h-5" />
                   <img src={master} alt="Mastercard" className="h-5" />
                   <img src={amercican} alt="Amex" className="h-5" />
@@ -111,7 +111,7 @@ const Payment = () => {
                 type="submit"
                 fullWidth
                 variant="primary"
-                
+
               >
                 Pay Now
               </Button>
