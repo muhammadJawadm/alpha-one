@@ -65,7 +65,7 @@ const AddPaymentModal = ({ isOpen, onClose }) => {
             />
 
             {/* Modal */}
-            <div className="relative bg-[#2B3544] rounded-lg w-full max-w-md mx-4 p-8 my-auto max-h-[90vh] overflow-y-auto">
+            <div className="relative bg-[#2B3544] rounded-lg w-full max-w-md mx-4 p-8 my-auto max-h-[90vh] overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
                 <h2 className="text-2xl font-semibold text-white mb-6">Add Payment Details</h2>
 
                 <form onSubmit={handleSubmit} className="space-y-4">

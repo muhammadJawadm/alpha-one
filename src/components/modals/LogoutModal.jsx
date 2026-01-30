@@ -10,7 +10,7 @@ const LogoutModal = ({ isOpen, onClose, onConfirm }) => {
             />
 
             {/* Modal */}
-            <div className="relative bg-[#2B3544] rounded-lg w-full max-w-sm mx-4 p-8 my-auto max-h-[90vh] overflow-y-auto">
+            <div className="relative bg-[#2B3544] rounded-lg w-full max-w-sm mx-4 p-8 my-auto max-h-[90vh] overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
                 {/* Content */}
                 <div className="text-center mb-8">
                     <h2 className="text-xl font-semibold text-white mb-3">Logout</h2>

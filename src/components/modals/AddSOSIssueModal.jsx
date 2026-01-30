@@ -21,7 +21,7 @@ const AddSOSIssueModal = ({ onClose, onSubmit }) => {
             onClick={onClose}
         >
             <div
-                className="bg-[#2A3441] rounded-xl shadow-2xl p-10 w-full max-w-md my-auto max-h-[90vh] overflow-y-auto"
+                className="bg-[#2A3441] rounded-xl shadow-2xl p-10 w-full max-w-md my-auto max-h-[90vh] overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
                 onClick={(e) => e.stopPropagation()}
             >
                 {/* Header */}

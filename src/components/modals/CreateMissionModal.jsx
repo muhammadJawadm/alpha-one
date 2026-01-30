@@ -8,7 +8,8 @@ const CreateMissionModal = ({ isOpen, onClose }) => {
         date: '',
         startTime: '',
         endTime: '',
-        document: null
+        document: null,
+        image: null
     });
 
     const handleChange = (e) => {
@@ -27,11 +28,20 @@ const CreateMissionModal = ({ isOpen, onClose }) => {
         });
     };
 
+    const handleImageChange = (e) => {
+        const file = e.target.files[0];
+        setFormData({
+            ...formData,
+            image: file
+        });
+    };
+
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log('Creating mission:', formData);
         // Add your mission creation logic here
         onClose();
+            image: null
         setFormData({
             missionName: '',
             location: '',
@@ -54,7 +64,7 @@ const CreateMissionModal = ({ isOpen, onClose }) => {
             />
 
             {/* Modal */}
-            <div className="relative bg-[#2B3544] rounded-lg w-full max-w-md mx-4 p-6 my-auto max-h-[90vh] overflow-y-auto">
+            <div className="relative bg-[#2B3544] rounded-lg w-full max-w-md mx-4 p-6 my-auto max-h-[90vh] overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
                 {/* Close Button */}
                 <button
                     onClick={onClose}
@@ -175,12 +185,12 @@ const CreateMissionModal = ({ isOpen, onClose }) => {
                     {/* Upload Document */}
                     <div className="relative">
                         <label className="block">
-                            <div className="w-full px-4 py-8 bg-[#1A2332] rounded-lg border-2 border-dashed border-gray-600 hover:border-[#3B82F6] transition-colors cursor-pointer text-center">
-                                <div className="flex flex-col items-center">
-                                    <svg className="w-8 h-8 text-[#3B82F6] mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <div className="w-full px-4 py-2 bg-[#1A2332] rounded-lg border-2 border-dashed border-gray-600 hover:border-[#3B82F6] transition-colors cursor-pointer text-center">
+                                <div className="flex flex-col items-center gap-2">
+                                    <span className="text-gray-400 text-sm font-medium mb-3">Upload Document</span>
+                                    <svg className="w-12 h-12 text-[#3B82F6] mb-2 p-2 bg-gray-700 rounded-full" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
                                     </svg>
-                                    <span className="text-white text-sm font-medium mb-1">Upload Document</span>
                                     <span className="text-gray-400 text-xs">Csv (.xlsx), PDF, Excel (.csv)</span>
                                 </div>
                             </div>
@@ -196,6 +206,30 @@ const CreateMissionModal = ({ isOpen, onClose }) => {
                         )}
                     </div>
 
+                    <div className="relative">
+                        <label className="block">
+                            <div className="w-full px-4 py-2 bg-[#1A2332] rounded-lg border-2 border-dashed border-gray-600 hover:border-[#3B82F6] transition-colors cursor-pointer text-center">
+                                <div className="flex flex-col items-center gap-2">
+                                    <span className="text-gray-400 text-sm font-medium mb-1">Upload Image</span>
+                                    <svg className="w-12 h-12 text-[#3B82F6] mb-2 p-2 bg-gray-700 rounded-full" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                                    </svg>
+                                    <span className="text-gray-400 text-xs">Png, .jpg, SVG</span>
+                                </div>
+                            </div>
+                            <input
+                                type="file"
+                                onChange={handleImageChange}
+                                accept=".png,.jpg,.jpeg,.svg"
+                                className="hidden"
+                            />
+                        </label>
+                        {formData.image && (
+                            <p className="mt-2 text-sm text-gray-300">Selected: {formData.image.name}</p>
+                        )}
+                    </div>
+
+                    {/* 
                     {/* Submit Button */}
                     <button
                         type="submit"

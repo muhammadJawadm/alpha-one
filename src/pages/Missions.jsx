@@ -2,11 +2,13 @@ import { useState } from 'react';
 import CreateMissionModal from '../components/modals/CreateMissionModal';
 import EditMissionModal from '../components/modals/EditMissionModal';
 import DeleteMissionModal from '../components/modals/DeleteMissionModal';
+import MissionDetailModal from '../components/modals/MissionDetailModal';
 
 const Missions = () => {
     const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
     const [isEditModalOpen, setIsEditModalOpen] = useState(false);
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+    const [isDetailModalOpen, setIsDetailModalOpen] = useState(false);
     const [selectedMission, setSelectedMission] = useState(null);
     const [searchQuery, setSearchQuery] = useState('');
     const [openActionMenu, setOpenActionMenu] = useState(null);
@@ -17,12 +19,14 @@ const Missions = () => {
             id: 1,
             missionName: 'Construction',
             location: 'Site A – Downtown Plaza',
-            employee: 'John',
+            employee: 'Alex',
             h60: 'Acknowledged',
             h0: 'Check-In',
-            startTime: '09:00 AM',
-            endTime: '02:30 PM',
-            date: '2026-01-09'
+            startTime: '11:00 AM',
+            endTime: '03:00 PM',
+            date: '01/09/2026',
+            document: 'Mission2.pdf',
+            image: 'Construction img.png'
         },
         {
             id: 2,
@@ -140,6 +144,12 @@ const Missions = () => {
         );
     };
 
+    const handleViewDetails = (mission) => {
+        setSelectedMission(mission);
+        setIsDetailModalOpen(true);
+        setOpenActionMenu(null);
+    };
+
     const handleEdit = (mission) => {
         setSelectedMission(mission);
         setIsEditModalOpen(true);
@@ -246,7 +256,8 @@ const Missions = () => {
                             {filteredMissions.map((mission) => (
                                 <tr
                                     key={mission.id}
-                                    className="border-b border-[#2B3544] hover:bg-[#2B3544]/30 transition-colors"
+                                    onClick={() => handleViewDetails(mission)}
+                                    className="border-b border-[#2B3544] hover:bg-[#2B3544]/30 transition-colors cursor-pointer"
                                 >
                                     <td className="px-6 py-4 text-sm text-white border border-[#3B82F6]">{mission.missionName}</td>
                                     <td className="px-6 py-4 text-sm text-gray-300 border border-[#3B82F6]">{mission.location}</td>
@@ -257,7 +268,10 @@ const Missions = () => {
                                     <td className="px-6 py-4 text-sm text-gray-300 border border-[#3B82F6]">{mission.endTime}</td>
                                     <td className="px-6 py-4 relative border border-[#3B82F6]">
                                         <button
-                                            onClick={() => setOpenActionMenu(openActionMenu === mission.id ? null : mission.id)}
+                                            onClick={(e) => {
+                                                e.stopPropagation();
+                                                setOpenActionMenu(openActionMenu === mission.id ? null : mission.id);
+                                            }}
                                             className="p-1 hover:bg-white/10 rounded transition-colors"
                                         >
                                             <svg className="w-5 h-5 text-gray-400" fill="currentColor" viewBox="0 0 24 24">
@@ -271,13 +285,19 @@ const Missions = () => {
                                         {openActionMenu === mission.id && (
                                             <div className="absolute right-0 mt-2 w-32 bg-[#2B3544] rounded-lg shadow-lg border border-gray-600 z-10">
                                                 <button
-                                                    onClick={() => handleEdit(mission)}
+                                                    onClick={(e) => {
+                                                        e.stopPropagation();
+                                                        handleEdit(mission);
+                                                    }}
                                                     className="w-full px-4 py-2 text-left text-sm text-white hover:bg-[#3B82F6] transition-colors rounded-t-lg"
                                                 >
                                                     Edit
                                                 </button>
                                                 <button
-                                                    onClick={() => handleDelete(mission)}
+                                                    onClick={(e) => {
+                                                        e.stopPropagation();
+                                                        handleDelete(mission);
+                                                    }}
                                                     className="w-full px-4 py-2 text-left text-sm text-red-400 hover:bg-red-500/20 transition-colors rounded-b-lg"
                                                 >
                                                     Delete
@@ -293,6 +313,11 @@ const Missions = () => {
             </div>
 
             {/* Modals */}
+            <MissionDetailModal
+                isOpen={isDetailModalOpen}
+                onClose={() => setIsDetailModalOpen(false)}
+                mission={selectedMission}
+            />
             <CreateMissionModal
                 isOpen={isCreateModalOpen}
                 onClose={() => setIsCreateModalOpen(false)}

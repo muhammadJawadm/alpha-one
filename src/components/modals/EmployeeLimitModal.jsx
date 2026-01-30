@@ -10,7 +10,7 @@ const EmployeeLimitModal = ({ isOpen, onClose }) => {
             />
 
             {/* Modal */}
-            <div className="relative bg-[#2B3544] rounded-lg w-full max-w-md mx-4 p-8 my-auto max-h-[90vh] overflow-y-auto">
+            <div className="relative bg-[#2B3544] rounded-lg w-full max-w-md mx-4 p-8 my-auto max-h-[90vh] overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
                 {/* Warning Icon */}
                 <div className="flex justify-center mb-6">
                     <div className="w-16 h-16 rounded-full bg-red-500/20 flex items-center justify-center">
