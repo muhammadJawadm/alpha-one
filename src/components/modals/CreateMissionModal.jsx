@@ -41,7 +41,7 @@ const CreateMissionModal = ({ isOpen, onClose }) => {
         console.log('Creating mission:', formData);
         // Add your mission creation logic here
         onClose();
-            image: null
+        image: null
         setFormData({
             missionName: '',
             location: '',
@@ -134,18 +134,23 @@ const CreateMissionModal = ({ isOpen, onClose }) => {
                         </svg>
                     </div>
 
-                    {/* Select Date */}
                     <div className="relative">
                         <input
-                            type="date"
+                            type="text"
                             name="date"
                             value={formData.date}
+                            onFocus={(e) => e.target.type = 'date'} // Switch to date input when focused
+                            onBlur={(e) => {
+                                // If the value is empty, switch it back to text to retain placeholder
+                                if (!e.target.value) e.target.type = 'text';
+                            }}
                             onChange={handleChange}
                             placeholder="Select Date"
                             className="w-full px-4 py-3 bg-[#1A2332] text-white placeholder-gray-500 rounded-lg border border-transparent focus:border-[#3B82F6] focus:outline-none transition-colors"
                             required
                         />
-                        <svg className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[#3B82F6] pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        {/* Date Icon */}
+                        <svg className="absolute right-4 top-1/2 -translate-y-1/2 w-6 h-6 text-[#3B82F6] pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                         </svg>
                     </div>
@@ -154,33 +159,46 @@ const CreateMissionModal = ({ isOpen, onClose }) => {
                     <div className="grid grid-cols-2 gap-3">
                         <div className="relative">
                             <input
-                                type="time"
+                                type="text"
                                 name="startTime"
                                 value={formData.startTime}
+                                onFocus={(e) => e.target.type = 'time'} // Switch to time input when focused
+                                onBlur={(e) => {
+                                    // If the value is empty, switch it back to text to retain placeholder
+                                    if (!e.target.value) e.target.type = 'text';
+                                }}
                                 onChange={handleChange}
                                 placeholder="Start Time"
                                 className="w-full px-4 py-3 bg-[#1A2332] text-white placeholder-gray-500 rounded-lg border border-transparent focus:border-[#3B82F6] focus:outline-none transition-colors"
                                 required
                             />
-                            <svg className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#3B82F6] pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <svg className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-[#3B82F6] pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                             </svg>
                         </div>
+
                         <div className="relative">
                             <input
-                                type="time"
+                                type="text"
                                 name="endTime"
                                 value={formData.endTime}
+                                onFocus={(e) => e.target.type = 'time'} // Switch to time input when focused
+                                onBlur={(e) => {
+                                    // If the value is empty, switch it back to text to retain placeholder
+                                    if (!e.target.value) e.target.type = 'text';
+                                }}
                                 onChange={handleChange}
                                 placeholder="End Time"
                                 className="w-full px-4 py-3 bg-[#1A2332] text-white placeholder-gray-500 rounded-lg border border-transparent focus:border-[#3B82F6] focus:outline-none transition-colors"
                                 required
                             />
-                            <svg className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#3B82F6] pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <svg className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-[#3B82F6] pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                             </svg>
                         </div>
                     </div>
+
+
 
                     {/* Upload Document */}
                     <div className="relative">

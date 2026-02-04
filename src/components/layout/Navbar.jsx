@@ -17,7 +17,7 @@ const Navbar = ({ onToggleSidebar }) => {
     if (path === '/settings/profile') return { title: 'Profile Setting', subtitle: '', showBack: true };
     if (path === '/settings/change-password') return { title: 'Change Password', subtitle: '', showBack: true };
     if (path === '/settings/subscriptions') return { title: 'Subscriptions', subtitle: '', showBack: true };
-    if (path === '/settings/language') return { title: 'Subscriptions', subtitle: '', showBack: true };
+    if (path === '/settings/language') return { title: 'Language Preferences', subtitle: '', showBack: true };
     if (path === '/settings/terms') return { title: 'Terms & Conditions', subtitle: '', showBack: true };
     if (path === '/settings/privacy') return { title: 'Privacy Policy', subtitle: '', showBack: true };
     if (path.startsWith('/employees/')) return { title: 'Employee Details', subtitle: '', showBack: true };

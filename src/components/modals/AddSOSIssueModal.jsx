@@ -26,7 +26,7 @@ const AddSOSIssueModal = ({ onClose, onSubmit }) => {
             >
                 {/* Header */}
                 <div className="flex items-center justify-between mb-6 ">
-                    <h2 className="text-xl font-semibold text-white">SOS Issues Report</h2>
+                    <h2 className="text-xl font-semibold text-white">Incident Report</h2>
                     <button
                         onClick={onClose}
                         className="text-gray-400 hover:text-white transition-colors"
@@ -75,13 +75,13 @@ const AddSOSIssueModal = ({ onClose, onSubmit }) => {
                     </div>
 
                     {/* Submit Button */}
-                    <Button
+                    {/* <Button
                         type="submit"
                         fullWidth
                         variant="primary"
                     >
                         Submit Report
-                    </Button>
+                    </Button> */}
                 </form>
             </div>
         </div>

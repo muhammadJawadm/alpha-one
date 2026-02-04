@@ -89,10 +89,10 @@ const Employees = () => {
             <div className="bg-[#1A2332] rounded-lg overflow-hidden border border-[#2B3544]">
                 {/* Make table horizontally scrollable on mobile */}
                 <div className="overflow-x-auto">
-                    <table className="w-full min-w-[800px]">
+                    <table className="w-[90%] min-w-[800px]">
                         <thead>
                             <tr className="border-b border-[#2B3544]">
-                                <th className="px-4 sm:px-6 py-4 text-left text-xs sm:text-sm font-medium text-white border border-[#3B82F6]">Employee Id</th>
+                                <th className="px-4 sm:px-6  py-4 text-left text-xs sm:text-sm font-medium text-white border border-[#3B82F6]">Employee Id</th>
                                 <th className="px-4 sm:px-6 py-4 text-left text-xs sm:text-sm font-medium text-white border border-[#3B82F6]">Name</th>
                                 <th className="px-4 sm:px-6 py-4 text-left text-xs sm:text-sm font-medium text-white border border-[#3B82F6]">Team</th>
                                 <th className="px-4 sm:px-6 py-4 text-left text-xs sm:text-sm font-medium text-white border border-[#3B82F6]">Email</th>
@@ -146,7 +146,7 @@ const Employees = () => {
                                                 />
 
                                                 {/* Menu */}
-                                                <div className="absolute right-0 top-full mt-1 w-56 bg-[#2B3544] rounded-lg shadow-lg border border-[#3B82F6] overflow-hidden z-20">
+                                                <div className="absolute left-52 top-full mt-1 w-40 bg-[#2B3544] rounded-lg shadow-lg border border-[#3B82F6] overflow-hidden z-20">
                                                     <button
                                                         onClick={(e) => handleViewDetails(employee, e)}
                                                         className="w-full px-4 py-3 text-left text-white hover:bg-[#374151] transition-colors border-b border-[#3B82F6] text-sm sm:text-base"

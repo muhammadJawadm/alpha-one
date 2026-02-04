@@ -27,7 +27,7 @@ const LanguagePreferences = () => {
                             value="english"
                             checked={selectedLanguage === 'english'}
                             onChange={(e) => setSelectedLanguage(e.target.value)}
-                            className="w-5 h-5 text-[#3B82F6] bg-transparent border-2 border-gray-500 focus:ring-2 focus:ring-[#3B82F6] focus:ring-offset-0"
+                            className="w-5 h-5 appearance-none rounded-full border-2 border-gray-500 cursor-pointer checked:border-[#3B82F6] checked:bg-[#3B82F6]"
                         />
                         <span className="text-white font-medium">English</span>
                     </label>
@@ -40,7 +40,7 @@ const LanguagePreferences = () => {
                             value="french"
                             checked={selectedLanguage === 'french'}
                             onChange={(e) => setSelectedLanguage(e.target.value)}
-                            className="w-5 h-5 text-[#3B82F6] bg-transparent border-2 border-gray-500 focus:ring-2 focus:ring-[#3B82F6] focus:ring-offset-0"
+                            className="w-5 h-5 appearance-none rounded-full border-2 border-gray-500 cursor-pointer checked:border-[#3B82F6] checked:bg-[#3B82F6]"
                         />
                         <span className="text-white font-medium">French</span>
                     </label>

@@ -239,7 +239,7 @@ const Missions = () => {
             {/* Mission Table */}
             <div className="bg-[#1A2332] rounded-lg overflow-hidden border border-[#2B3544]">
                 <div className="overflow-x-auto">
-                    <table className="w-full">
+                    <table className="w-[93%]">
                         <thead>
                             <tr className="border-b border-[#2B3544]">
                                 <th className="px-6 py-4 text-left text-sm font-medium text-white border border-[#3B82F6]">Mission Name</th>
@@ -283,7 +283,15 @@ const Missions = () => {
 
                                         {/* Action Dropdown */}
                                         {openActionMenu === mission.id && (
-                                            <div className="absolute right-0 mt-2 w-32 bg-[#2B3544] rounded-lg shadow-lg border border-gray-600 z-10">
+                                            <div className="absolute left-36 mt-2 w-24 bg-[#2B3544] rounded-lg shadow-lg border border-gray-600 z-10">
+                                                <button
+                                                    onClick={(e) => {
+                                                        e.stopPropagation();
+                                                    }}
+                                                    className="w-full px-4 py-2 text-left text-sm text-white hover:bg-white/10 transition-colors rounded-b-lg"
+                                                >
+                                                    View
+                                                </button>
                                                 <button
                                                     onClick={(e) => {
                                                         e.stopPropagation();
@@ -298,7 +306,7 @@ const Missions = () => {
                                                         e.stopPropagation();
                                                         handleDelete(mission);
                                                     }}
-                                                    className="w-full px-4 py-2 text-left text-sm text-red-400 hover:bg-red-500/20 transition-colors rounded-b-lg"
+                                                    className="w-full px-4 py-2 text-left text-sm text-white hover:bg-red-500/20 transition-colors rounded-b-lg"
                                                 >
                                                     Delete
                                                 </button>

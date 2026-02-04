@@ -169,8 +169,8 @@ const Dashboard = () => {
         <div className="lg:col-span-1">
           <div className="bg-[#1E293B] rounded-xl p-6">
             <div className="flex items-center justify-between mb-4">
-              <h2 className="text-white text-xl font-semibold">SOS Issues Report</h2>
-              <button
+              <h2 className="text-white text-xl font-semibold">Incident Report</h2>
+              {/* <button
                 onClick={() => setShowSOSModal(true)}
                 className="flex items-center gap-1 text-blue-400 hover:text-blue-300 transition-colors text-sm font-medium"
               >
@@ -187,11 +187,11 @@ const Dashboard = () => {
                   />
                 </svg>
                 Add
-              </button>
+              </button> */}
             </div>
             <div className="space-y-3">
               {resetRequests.map((request) => (
-                <div
+                <div onClick={() => setShowSOSModal(true)}
                   key={request.id}
                   className="bg-[#0F1729] rounded-lg p-4 hover:bg-[#1A2332] transition-colors cursor-pointer"
                 >
@@ -208,24 +208,29 @@ const Dashboard = () => {
           <div className="bg-[#1E293B] rounded-xl p-6">
             <div className="flex items-center justify-between mb-4">
               <h2 className="text-white text-xl font-semibold">Calendar</h2>
-              <select
-                value={selectedMonth}
-                onChange={(e) => setSelectedMonth(e.target.value)}
-                className="bg-[#2B78B6] text-white px-4 py-2 rounded-lg text-sm cursor-pointer focus:outline-none"
-              >
-                <option>January</option>
-                <option>February</option>
-                <option>March</option>
-                <option>April</option>
-                <option>May</option>
-                <option>June</option>
-                <option>July</option>
-                <option>August</option>
-                <option>September</option>
-                <option>October</option>
-                <option>November</option>
-                <option>December</option>
-              </select>
+              <div className="relative">
+                <select
+                  value={selectedMonth}
+                  onChange={(e) => setSelectedMonth(e.target.value)}
+                  className="bg-[#2B78B6] text-white px-4 py-2 pr-10 rounded-lg text-sm cursor-pointer focus:outline-none appearance-none"
+                >
+                  <option>January</option>
+                  <option>February</option>
+                  <option>March</option>
+                  <option>April</option>
+                  <option>May</option>
+                  <option>June</option>
+                  <option>July</option>
+                  <option>August</option>
+                  <option>September</option>
+                  <option>October</option>
+                  <option>November</option>
+                  <option>December</option>
+                </select>
+                <svg className="absolute right-6 top-1/2 -translate-y-1/2 w-4 h-4 text-white pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </div>
             </div>
 
             {/* Calendar Grid */}

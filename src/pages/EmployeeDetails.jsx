@@ -1,11 +1,30 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
+import EditMissionModal from '../components/modals/EditMissionModal';
 
 const EmployeeDetails = () => {
     const { employeeId } = useParams();
     const location = useLocation();
     const email = location.state?.email || 'John32@gmail.com';
     const [searchQuery, setSearchQuery] = useState('');
+    const [openMenuIndex, setOpenMenuIndex] = useState(null);
+    const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+    const [selectedMission, setSelectedMission] = useState(null);
+    const menuRef = useRef(null);
+
+    // Close menu when clicking outside
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (menuRef.current && !menuRef.current.contains(event.target)) {
+                setOpenMenuIndex(null);
+            }
+        };
+
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, []);
 
     // Mock mission data
     const missions = [
@@ -91,6 +110,22 @@ const EmployeeDetails = () => {
         },
     ];
 
+    const handleEdit = (mission, index) => {
+        setSelectedMission(mission);
+        setOpenMenuIndex(null);
+        setIsEditModalOpen(true);
+    };
+
+    const handleDelete = (mission, index) => {
+        console.log('Delete mission:', mission);
+        setOpenMenuIndex(null);
+        // Add your delete logic here
+    };
+
+    const toggleMenu = (index) => {
+        setOpenMenuIndex(openMenuIndex === index ? null : index);
+    };
+
     const getStatusBadge = (status) => {
         const statusStyles = {
             'Acknowledged': 'bg-[#3B82F6] text-white',
@@ -153,7 +188,7 @@ const EmployeeDetails = () => {
             {/* Mission Table */}
             <div className="bg-[#1A2332] rounded-lg overflow-hidden border border-[#2B3544]">
                 <div className="overflow-x-auto">
-                    <table className="w-full">
+                    <table className="w-[93%]">
                         <thead>
                             <tr className="border-b border-[#2B3544]">
                                 <th className="px-6 py-4 text-left text-sm font-medium text-white border border-[#3B82F6]">Mission Name</th>
@@ -178,16 +213,36 @@ const EmployeeDetails = () => {
                                     <td className="px-6 py-4 text-sm text-gray-300 border border-[#3B82F6]">{mission.startTime}</td>
                                     <td className="px-6 py-4 text-sm text-gray-300 border border-[#3B82F6]">{mission.endTime}</td>
                                     <td className="px-6 py-4 border border-[#3B82F6]">
-                                        <button
-                                            onClick={() => console.log('Actions for', mission.missionName)}
-                                            className="p-1 hover:bg-white/10 rounded transition-colors"
-                                        >
-                                            <svg className="w-5 h-5 text-gray-400" fill="currentColor" viewBox="0 0 24 24">
-                                                <circle cx="12" cy="5" r="2" />
-                                                <circle cx="12" cy="12" r="2" />
-                                                <circle cx="12" cy="19" r="2" />
-                                            </svg>
-                                        </button>
+                                        <div className="relative" ref={openMenuIndex === index ? menuRef : null}>
+                                            <button
+                                                onClick={() => toggleMenu(index)}
+                                                className="p-1 hover:bg-white/10 rounded transition-colors"
+                                            >
+                                                <svg className="w-5 h-5 text-gray-400" fill="currentColor" viewBox="0 0 24 24">
+                                                    <circle cx="12" cy="5" r="2" />
+                                                    <circle cx="12" cy="12" r="2" />
+                                                    <circle cx="12" cy="19" r="2" />
+                                                </svg>
+                                            </button>
+
+                                            {/* Popup Menu */}
+                                            {openMenuIndex === index && (
+                                                <div className="absolute left-36 top-0 z-50 pl-2 justify-center items-center w-24 bg-[#1A2332] border border-[#3B82F6] rounded-lg shadow-lg overflow-hidden">
+                                                    <button
+                                                        onClick={() => handleEdit(mission, index)}
+                                                        className="w-full px-5 py-4 text-left text-sm  text-white hover:bg-[#3B82F6] transition-colors flex items-center gap-2"
+                                                    >
+                                                        Edit
+                                                    </button>
+                                                    <button
+                                                        onClick={() => handleDelete(mission, index)}
+                                                        className="w-full px-4 py-3 text-left text-sm text-white hover:bg-[#EF4444] transition-colors flex items-center gap-2 border-t border-[#2B3544]"
+                                                    >
+                                                        Delete
+                                                    </button>
+                                                </div>
+                                            )}
+                                        </div>
                                     </td>
                                 </tr>
                             ))}
@@ -195,6 +250,13 @@ const EmployeeDetails = () => {
                     </table>
                 </div>
             </div>
+
+            {/* Edit Mission Modal */}
+            <EditMissionModal
+                isOpen={isEditModalOpen}
+                onClose={() => setIsEditModalOpen(false)}
+                mission={selectedMission}
+            />
         </div>
     );
 };

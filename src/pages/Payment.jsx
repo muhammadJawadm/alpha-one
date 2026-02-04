@@ -26,7 +26,7 @@ const Payment = () => {
     e.preventDefault();
     console.log('Payment data:', formData);
     // Process payment and navigate to dashboard
-    navigate('/singup');
+    navigate('/signup');
   };
 
   return (
